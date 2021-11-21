@@ -1,108 +1,218 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 9</title>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lab 9</title>
+    <style>
+      button {
+        margin: 3px;
+      }
 
-  <style>
-    button {
-      margin: 3px;
-    }
+      button:hover {
+        cursor: pointer;
+      }
 
-    button:hover {
-      cursor: pointer;
-    }
+      #first-num,
+      #second-num {
+        width: 60px;
+      }
 
-    #first-num,
-    #second-num {
-      width: 60px;
-    }
+      output {
+        border: 1px solid gray;
+        display: block;
+        height: 18px;
+        margin-top: 5px;
+        padding: 5px;
+        width: 240px;
+      }
 
-    output {
-      border: 1px solid gray;
-      display: block;
-      height: 18px;
-      margin-top: 5px;
-      padding: 5px;
-      width: 240px;
-    }
+      main {
+        width: 800px;
+      }
 
-    main {
-      width: 800px;
-    }
+      #error-btns {
+        column-gap: 5px;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        row-gap: 5px;
+      }
 
-    #error-btns {
-      column-gap: 5px;
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: 30px;
-      row-gap: 5px;
-    }
+      #error-btns > * {
+        padding: 8px 2px;
+        width: 122px;
+      }
+    </style>
+  </head>
 
-    #error-btns>* {
-      padding: 8px 2px;
-      width: 122px;
-    }
-  </style>
-</head>
+  <body>
+    <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+    <script>
+      window.TrackJS &&
+        TrackJS.install({
+          token: "ffa5bfda3d13414bbdff92637c5ede81",
+          // for more configuration options, see https://docs.trackjs.com
+        });
+    </script>
+    <main>
+      <form>
+        <fieldset>
+          <legend>Error Calculator</legend>
+          <input name="first-num" id="first-num" />
+          <select name="operator" id="operator">
+            <option>+</option>
+            <option>-</option>
+            <option>*</option>
+            <option>/</option>
+          </select>
+          <input name="second-num" id="second-num" />
+          <button id="calculate">Calculate</button>
+          <br />
+          <output></output>
+        </fieldset>
+      </form>
 
-<body>
-  <main>
-    <form>
-      <fieldset>
-        <legend>Error Calculator</legend>
-        <input name="first-num" id="first-num" />
-        <select name="operator" id="operator">
-          <option>+</option>
-          <option>-</option>
-          <option>*</option>
-          <option>/</option>
-        </select>
-        <input name="second-num" id="second-num" />
-        <button id="calculate">Calculate</button>
-        <br />
-        <output></output>
-      </fieldset>
-    </form>
+      <section id="error-btns">
+        <button onclick="consoleLog()">Console Log</button>
+        <button onclick="consoleError()">Console Error</button>
+        <button onclick="consoleCount()">Console Count</button>
+        <button onclick="consoleWarn()">Console Warn</button>
+        <button onclick="consoleAssert()">Console Assert</button>
+        <button onclick="consoleClear()">Console Clear</button>
+        <button onclick="consoleDir()">Console Dir</button>
+        <button onclick="consoleDirxml()">Console dirxml</button>
+        <button onclick="consoleGroupStart()">Console Group Start</button>
+        <button onclick="consoleGroupEnd()">Console Group End</button>
+        <button onclick="consoleTable()">Console Table</button>
+        <button onclick="consoleStartTimer()">Start Timer</button>
+        <button onclick="consoleEndTimer()">End Timer</button>
+        <button onclick="consoleTrace()">Console Trace</button>
+        <button onclick="globalError()">Trigger a Global Error</button>
+      </section>
+    </main>
 
-    <section id="error-btns">
-      <button>Console Log</button>
-      <button>Console Error</button>
-      <button>Console Count</button>
-      <button>Console Warn</button>
-      <button>Console Assert</button>
-      <button>Console Clear</button>
-      <button>Console Dir</button>
-      <button>Console dirxml</button>
-      <button>Console Group Start</button>
-      <button>Console Group End</button>
-      <button>Console Table</button>
-      <button>Start Timer</button>
-      <button>End Timer</button>
-      <button>Console Trace</button>
-      <button>Trigger a Global Error</button>
-    </section>
-  </main>
+    <script>
+      function consoleLog() {
+        console.log("poggy woggy fwunga baby!");
+      }
 
-  <script>
-    let form = document.querySelector('form');
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      let output = document.querySelector('output');
-      let firstNum = document.querySelector('#first-num').value;
-      let secondNum = document.querySelector('#second-num').value;
-      let operator = document.querySelector('#operator').value;
-      output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
-    });
+      function consoleError() {
+        console.error("the imposter is sus!");
+      }
 
-    let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
+      function consoleCount() {
+        console.count("people that pooped their pants as an adult");
+      }
 
-    // Start your code here
-    // You may move this JS to another file if you wish
-  </script>
-</body>
+      function consoleWarn() {
+        console.warn(
+          "youve been grading for too long. go outside and touch some grass"
+        );
+      }
 
+      function consoleAssert() {
+        const redIsImposter = false;
+        const overUsedJoke = true;
+        const reason = "Red should be imposter!";
+        console.assert(overUsedJoke == redIsImposter, {
+          redIsImposter,
+          overUsedJoke,
+          reason,
+        });
+      }
+
+      function consoleClear() {
+        console.clear();
+      }
+
+      function consoleDir() {
+        console.dir(document.head);
+      }
+
+      function consoleDirxml() {
+        console.dir(document.head);
+      }
+
+      function consoleGroupStart() {
+        console.group("People who need to go drink water");
+        console.info("You");
+      }
+
+      function consoleGroupEnd() {
+        console.groupEnd("People who need to go drink water");
+      }
+
+      function consoleTable() {
+        console.table([
+          {
+            first: "Shrek",
+          },
+          {
+            first: "Donkey",
+          },
+        ]);
+      }
+
+      function consoleStartTimer() {
+        console.time("Time since you realized you were breathing consciously");
+      }
+
+      function consoleEndTimer() {
+        console.timeEnd(
+          "Time since you realized you were breathing consciously"
+        );
+      }
+
+      function consoleTrace() {
+        const first = () => {
+          second();
+        };
+        const second = () => {
+          third();
+        };
+        const third = () => {
+          fourth();
+        };
+        const fourth = () => {
+          console.trace();
+        };
+        first();
+      }
+
+      function globalError() {}
+      class formError extends Error {
+        constructor(message) {
+          TrackJS.track("Testing TrackJS!");
+          super(message); // (1)
+          this.name = "formError"; // (2)
+        }
+      }
+      let form = document.querySelector("form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        try {
+          let output = document.querySelector("output");
+          let firstNum = document.querySelector("#first-num").value;
+          let secondNum = document.querySelector("#second-num").value;
+          if (firstNum !== 0 || secondNum !== 0) {
+            throw new formError("wrong input type");
+          }
+          let operator = document.querySelector("#operator").value;
+          output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+        } catch (err) {
+          alert(err.message);
+        }
+      });
+
+      let errorBtns = Array.from(
+        document.querySelectorAll("#error-btns > button")
+      );
+
+      // Start your code here
+      // You may move this JS to another file if you wish
+    </script>
+  </body>
 </html>
