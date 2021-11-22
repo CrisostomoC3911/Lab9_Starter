@@ -182,7 +182,9 @@
         first();
       }
 
-      function globalError() {}
+      function globalError() {
+        return thisisanerrorvariable;
+      }
       class formError extends Error {
         constructor(message) {
           TrackJS.track("Testing TrackJS!");
