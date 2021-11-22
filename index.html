@@ -199,7 +199,7 @@
           let output = document.querySelector("output");
           let firstNum = document.querySelector("#first-num").value;
           let secondNum = document.querySelector("#second-num").value;
-          if (firstNum !== 0 || secondNum !== 0) {
+          if (Number.isNaN(firstNum) || Number.isNaN(secondNum)) {
             throw new formError("wrong input type");
           }
           let operator = document.querySelector("#operator").value;
